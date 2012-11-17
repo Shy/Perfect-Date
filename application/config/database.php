@@ -48,12 +48,12 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'thedatenightco.domaincommysql.com';
-$db['default']['username'] = 'shy';
-$db['default']['password'] = 'bvaT8aCz';
+$db['default']['hostname'] = 'hostname'] = '97.107.130.57';
+$db['default']['username'] = 'thedatenight';
+$db['default']['password'] = 'thedatenight';
 $db['default']['database'] = 'thedatenight';
 $db['default']['dbdriver'] = 'mysql';
-$db['default']['dbprefix'] = 'ci_';
+$db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
 $db['default']['db_debug'] = TRUE;
 $db['default']['cache_on'] = FALSE;
