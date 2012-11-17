@@ -5,10 +5,10 @@
   <title>The Date Night</title>
 
   <!-- CSS Stuff -->
-  <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>application/views/css/option_select_view.css">
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/option_select_view.css">
 
   <!-- JavaScript Stuff -->
-  <script type="text/javascript" src="<?php echo base_url(); ?>application/views/javascript/option_select_view.js"></script>
+  <script type="text/javascript" src="<?php echo base_url(); ?>javascript/option_select_view.js"></script>
 
 </head>
 <body>
