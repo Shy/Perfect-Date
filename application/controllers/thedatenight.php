@@ -48,7 +48,20 @@ class Thedatenight extends CI_Controller {
     $restaurant_query = $this->db->query('SELECT * FROM restaurant');
     $event_query = $this->db->query('SELECT * FROM event');
 
-    /* Grab entered data */
+    /* Try to grab all the entered data */
+    if(!(array_key_exists('restaurant_price', $_POST) &&
+	 array_key_exists('event_price', $_POST) &&
+	 array_key_exists('dress_type', $_POST))) {
+      /* The user did not enter required information. Redirect to the front page */
+      $this->load->view('option_select_view');
+      $this->load->view('footer_view');
+      return;
+    }
+    $restaurant_price = $_POST['restaurant_price'];
+    $event_price = $_POST['event_price'];
+    $dress_type = $_POST['dress_type'];
+
+    /* These entries can be empty, but we still need an empty array if they don't exist */
     if(array_key_exists('restaurant_categories', $_POST)) {
       $restaurant_categories = $_POST['restaurant_categories'];
     } else {
@@ -69,13 +82,9 @@ class Thedatenight extends CI_Controller {
     } else {
       $so_event_categories = array();
     }
-    $restaurant_price = $_POST['restaurant_price'];
-    $event_price = $_POST['event_price'];
-    $dress_type = $_POST['dress_type'];
 
     /* Rank each restaurant */
-    $index = 0;
-    foreach($restaurant_query->result() as $restaurant) {
+    foreach($restaurant_query->result() as $index=>$restaurant) {
       $rank = 0;
 
       /* Check the user's preferences */
@@ -99,13 +108,10 @@ class Thedatenight extends CI_Controller {
       }
 
       $restaurant_ranks[$index] = $rank;
-
-      $index = $index + 1;
     }
 
-    $index = 0;
     /* Rank each event */
-    foreach($event_query->result() as $event) {
+    foreach($event_query->result() as $index=>$event) {
       $rank = 0;
 
       /* Check the user's preferences */
@@ -129,8 +135,6 @@ class Thedatenight extends CI_Controller {
       }
 
       $event_ranks[$index] = $rank;
-
-      $index = $index + 1;
     }
 
     /* Custom Insertion sort */
@@ -167,24 +171,65 @@ class Thedatenight extends CI_Controller {
     }
 
     /* Sort restaurants and grab only the top couple */
+    $threshold = 2;
     $restaurant_array = $restaurant_query->result_array();
     list($sorted_restaurants, $sorted_restaurant_ranks) = rank_sort($restaurant_array, $restaurant_ranks);
     $final_restaurants = array();
-    for($i = 0; count($final_restaurants) <= 2; $i++) {
-      $top_rank = $sorted_restaurant_ranks[$i];
-      for($j = 0; $sorted_restaurant_ranks[$j] >= $top_rank; $j++) {
-	$final_restaurants[$j] = $sorted_restaurants[$j];
+    for($i = 0; count($final_restaurants) != $threshold;) {
+      $curr_rank = $sorted_restaurant_ranks[$i];
+      $curr_rank_restaurants = array();
+      /* Grab restaurants from current rank */
+      for($j = 0; $sorted_restaurant_ranks[$i] == $curr_rank; $j++, $i++) {
+	$curr_rank_restaurants[$j] = $sorted_restaurants[$i];
       }
-    }
+      if(count($final_restaurants) + count($curr_rank_restaurants) > $threshold) {
+	/* Add elements from curr_rank_restaurants to final_restaurants until the threshold is reached */
+	$random_indexes = array_rand($curr_rank_restaurants, $threshold - count($final_restaurants));
+	if(is_array($random_indexes)) {
+	  /* Add all the randomly picked elements */
+	  foreach($random_indexes as $index) {
+	    array_push($final_restaurants, $curr_rank_restaurants[$index]);
+	  }
+	} else {
+	  /* Only one element in random_indexes */
+	  array_push($final_restaurants, $curr_rank_restaurants[$random_indexes]);
+	}
+      } else {
+	/* This will not put us over the limit */
+	foreach($curr_rank_restaurants as $restaurant) {
+	  array_push($final_restaurants, $restaurant);
+	}
+      }
+      }
 
     /* Sort events and grab only the top couple */
     $event_array = $event_query->result_array();
     list($sorted_events, $sorted_event_ranks) = rank_sort($event_array, $event_ranks);
-    $final_event = array();
-    for($i = 0; count($final_events) <= 2; $i++) {
-      $top_rank = $sorted_event_ranks[$i];
-      for($j = 0; $sorted_event_ranks[$j] >= $top_rank; $j++) {
-	$final_events[$j] = $sorted_events[$j];
+    $final_events = array();
+    for($i = 0; count($final_events) != $threshold;) {
+      $curr_rank = $sorted_event_ranks[$i];
+      $curr_rank_events = array();
+      /* Grab events from current rank */
+      for($j = 0; $sorted_event_ranks[$i] == $curr_rank; $j++, $i++) {
+	$curr_rank_events[$j] = $sorted_events[$i];
+      }
+      if(count($final_events) + count($curr_rank_events) > $threshold) {
+	/* Add elements from curr_rank_events to final_events until the threshold is reached */
+	$random_indexes = array_rand($curr_rank_events, $threshold - count($final_events));
+	if(is_array($random_indexes)) {
+	  /* Add all the randomly picked elements */
+	  foreach($random_indexes as $index) {
+	    array_push($final_events, $curr_rank_events[$index]);
+	  }
+	} else {
+	  /* Only one element in random_indexes */
+	  array_push($final_events, $curr_rank_events[$random_indexes]);
+	}
+      } else {
+	/* This will not put us over the limit */
+	foreach($curr_rank_events as $event) {
+	  array_push($final_events, $event);
+	}
       }
     }
 
