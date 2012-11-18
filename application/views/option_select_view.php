@@ -20,7 +20,7 @@
       <!-- Print any errors found in the form -->
       <?php echo validation_errors(); ?>
 
-      <?php echo form_open('thedatenight/results'); ?>
+      <?php echo form_open('thedatenight/so_option_select'); ?>
 
       <ul>
 	<li id="preferences_restaurant">
@@ -28,12 +28,12 @@
 	  <ul id="restaurant_categories">
 	    <li class="option_label">What kind of food do you like?</li>
 	    <li class="option_input">
-	      <input type="checkbox" name="restaurant_categories" value="BREAKFAST">Breakfast<br/>
-	      <input type="checkbox" name="restaurant_categories" value="CHINESE">Chinese<br/>
-	      <input type="checkbox" name="restaurant_categories" value="ITALIAN">Italian<br/>
-	      <input type="checkbox" name="restuarant_categories" value="MEXICAN">Mexican<br/>
-	      <input type="checkbox" name="restaurant_categories" value="SOUTHERN">Southern<br/>
-	      <input type="checkbox" name="restaurant_categories" value="THAI">Thai
+	      <input type="checkbox" name="restaurant_categories[]" value="BREAKFAST">Breakfast<br/>
+	      <input type="checkbox" name="restaurant_categories[]" value="CHINESE">Chinese<br/>
+	      <input type="checkbox" name="restaurant_categories[]" value="ITALIAN">Italian<br/>
+	      <input type="checkbox" name="restaurant_categories[]" value="MEXICAN">Mexican<br/>
+	      <input type="checkbox" name="restaurant_categories[]" value="SOUTHERN">Southern<br/>
+	      <input type="checkbox" name="restaurant_categories[]" value="THAI">Thai
 	    </li>
 	  </ul>
 	  <ul id="restaurant_price">
@@ -50,9 +50,9 @@
 	  <ul id="event_categories">
 	    <li class="option_label">What kind of events do you like?</li>
 	    <li class="option_value">
-	      <input type="checkbox" name="event_categories" value="OUTDOORS">Outdoors<br/>
-	      <input type="checkbox" name="event_categories" value="SPORTS">Sports<br/>
-	      <input type="checkbox" name="event_categories" value="TECHNOLOGY">Technology<br/>
+	      <input type="checkbox" name="event_categories[]" value="OUTDOORS">Outdoors<br/>
+	      <input type="checkbox" name="event_categories[]" value="SPORTS">Sports<br/>
+	      <input type="checkbox" name="event_categories[]" value="TECHNOLOGY">Technology
 	    </li>
 	  </ul>
 	  <ul id="event_price">
@@ -69,9 +69,9 @@
 	    <li class="option_label">What dress code would you like?</li>
 	    <li class="option_input">
 	      <select name="dress_type">
-		<option value="a">Any</option>
-		<option value="c">Casual</option>
-		<option value="f">Formal</option>
+		<option value="ANY">Any</option>
+		<option value="CASUAL">Casual</option>
+		<option value="FORMAL">Formal</option>
 	      </select>
 	    </li>
 	  </ul>

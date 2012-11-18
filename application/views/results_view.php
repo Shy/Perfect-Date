@@ -8,8 +8,7 @@
   <div id="container">
     <h1>Your Potential Date Nights</h1>
     <div id="body">
-      <p>Your email address might be: <?=$email?></p>
-
+      <?php print_r($_POST); ?>
       <!-- TODO: actually list results -->
     </div>
   </div>

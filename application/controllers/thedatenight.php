@@ -9,11 +9,23 @@ class Thedatenight extends CI_Controller {
    */
   public function index() {
 
+    /* Load needed libraries */
     $this->load->helper(array('form', 'url'));
     $this->load->library('form_validation');
 
     /* Load the option select view */
     $this->load->view('option_select_view');
+
+  }
+
+  public function so_option_select() {
+
+    /* Load needed libraries */
+    $this->load->helper(array('form', 'url'));
+    $this->load->library('form_validation');
+
+    /* Load the significant other select view */
+    $this->load->view('so_option_select_view', $_POST);
 
   }
 
@@ -27,23 +39,16 @@ class Thedatenight extends CI_Controller {
     $this->load->helper(array('form', 'url'));
     $this->load->library('form_validation');
 
-    /* Validate email */
-    $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+    /* Grab all entries for now */
+    //$restaurant_query = $this->db->query('SELECT * FROM restaurant');
+    //    $event_query = $this->db->query('SELECT * FROM event');
 
-    /* Check if the form is valid */
-    if ($this->form_validation->run() == FALSE) {
+    //    foreach($restaurant_query->result() as $restaurant) {
+    //      $restaurant;
+    //    }
 
-      /* Form is invalid, return to the last page */
-      $this->load->view('option_select_view');
-
-    } else {
-
-      //TODO: use the options from _POST to get the best results from the db
-      $data['email'] = $_POST['email'];
-
-      /* Load the view to display the best options */
-      $this->load->view('results_view', $data);
-    }
+    /* Load the view to display the best options */
+    $this->load->view('results_view', $_POST);
   }
 
 }
