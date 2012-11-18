@@ -1,3 +1,4 @@
+/*
 *
 {
 	margin: 0;
@@ -9,6 +10,12 @@
 	font-style: normal;
 	text-decoration: none;
 
+}
+*/
+
+.entry-name {
+    display: block;
+    font-weight: bold;
 }
 
 body
@@ -72,17 +79,20 @@ hr {
  ------------------------------------------------------------------- */
 
 
-#menu 
+#menu
 {
 	text-align: right;
 	border-bottom: 4px solid #f0f0f0;
 	padding: 0 0 6px 0;
 }
 
+#menu ul {
+    display: inline;
+}
 
 #menu li
 {
-	display: inline;
+	display: inline-block;
 	border-left: 1em solid white;
 	font-size: 1.1em;
 	letter-spacing: 0.2em;
@@ -99,7 +109,7 @@ hr {
 	border-bottom: 4px solid #E00122;
 	padding: 0 0 9px 0;
 	color: #888;
-	
+
 }
 
 #menu li .selected
@@ -209,7 +219,7 @@ default width = 800/5 = 160px;
 .accordian {
 	width: 402px; height: 160px;
 	overflow: hidden;
-	
+
 	/*Time for some styling*/
 	margin: 100px auto;
 	box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.35);
@@ -229,18 +239,18 @@ default width = 800/5 = 160px;
 	display: block;
 	width: 80px;
 	float: left;
-	
+
 	border-left: 1px solid #888;
-	
+
 	box-shadow: 0 0 25px 10px rgba(0, 0, 0, 0.5);
 	-webkit-box-shadow: 0 0 25px 10px rgba(0, 0, 0, 0.5);
 	-moz-box-shadow: 0 0 25px 10px rgba(0, 0, 0, 0.5);
-	
+
 	/*Transitions to give animation effect*/
 	transition: all 0.5s;
 	-webkit-transition: all 0.5s;
 	-moz-transition: all 0.5s;
-	/*If you hover on the images now you should be able to 
+	/*If you hover on the images now you should be able to
 	see the basic accordian*/
 }
 
@@ -259,8 +269,8 @@ default width = 800/5 = 160px;
 .image_title {
 	background: rgba(0, 0, 0, 0.5);
 	position: absolute;
-	left: 0; bottom: 0;	
-width: 320px;	
+	left: 0; bottom: 0;
+width: 320px;
 
 }
 .image_title a {

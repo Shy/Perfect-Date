@@ -6,34 +6,27 @@
 </head>
 <body>
   <div id="container">
-    <h1>Your Potential Date Nights</h1>
     <div id="body">
       <div id="restaurants">
-	<h2>Potential Restaurants</h2>
-	<ul>
+	<h3>Recomended Restaurants</h3>
 	<?php foreach($restaurants as $index=>$restaurant): ?>
-	<li id="rastaurantid-<?php echo $restaurant['id']; ?>">
-	  <ul>
-	    <li class="entry-name"><?php echo $restaurant['name']; ?></li>
-	    <li class="entry-info"><?php echo $restaurant['info']; ?></li>
-	  </ul>
-	</li>
-	<?php endforeach; ?>
-	</ul>
+	<div id="rastaurantid-<?php echo $restaurant['id']; ?>">
+	  <span class="entry-name"><?php echo $restaurant['name']; ?></span>
+	  <span class="entry-info"><?php echo $restaurant['info']; ?></span>
+	</div>
+	  <?php endforeach; ?>
       </div>
       <div id="events">
-	<h2>Potential Events</h2>
-	<ul>
-	<?php foreach($events as $index=>$event): ?>
-	<li id="eventid-<?php echo $event['id']; ?>">
-	  <ul>
-	    <li class="entry-name"><?php echo $event['name']; ?></li>
-	    <li class="entry-info"><?php echo $event['info']; ?></li>
-	  </ul>
-	</li>
-	<?php endforeach; ?>
-	</ul>
+	<h3>Recomended Events</h3>
+	  <?php foreach($events as $index=>$event): ?>
+	  <div id="eventid-<?php echo $event['id']; ?>">
+	    <span class="entry-name"><?php echo $event['name']; ?></span>
+	    <span class="entry-info"><?php echo $event['info']; ?></span>
+	  </div>
+	  <?php endforeach; ?>
       </div>
+      <br/>
+      <button type="button" onclick="location.href='http://97.107.130.57/~sruparel/thedatenight.co/index.php/thedatenight'">Start Again</button>
     </div>
   </div>
 </body>

@@ -243,6 +243,21 @@ class Thedatenight extends CI_Controller {
 
     $this->load->view('footer_view');
   }
+
+  /**
+   * About page displays information about the company.
+   */
+  public function about() {
+    $this->load->view('header_view');
+
+    /* Load needed libraries */
+    $this->load->helper(array('url'));
+
+    $this->load->view('about_view');
+
+    $this->load->view('footer_view');
+  }
+
 }
 
 /* End of file thedatenight.php */

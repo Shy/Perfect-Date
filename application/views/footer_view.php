@@ -1,12 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
 <html>
 <head>
-	<title> TheDateNight </title>
 </head>
 <body>
-<div id="container">
-	<div id="footer">
+<div id="footer">
 
-	</div>
+</div>
 </div>
 </body>
 </html>
